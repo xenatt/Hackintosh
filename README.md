@@ -4,7 +4,7 @@ this Respository make for Hackintosh.
 [DSDT](/DSDT/)   
 DSDT And SSDT Hackintosh   
 
-[AppleHDA Realtek ALC Ptach](/AppleHDA/)   
+[AppleHDA Realtek ALC Patch](/AppleHDA/)   
 Patch Tools For Patch AppleHDA.kext   
 
 [NVRAM](/NVRAM/)   
