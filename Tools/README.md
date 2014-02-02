@@ -1,7 +1,7 @@
 ## Tools
 Other tools For Hackintosh.    
    
-**Recovery HD Partition Creator**.[Download](https://raw.github.com/xenatt/Hackintosh/master/Tools/RecoveryHD_13A603.dmg),[Read](/RecoveryHD Creater.command/)        
+**Recovery HD Partition Creator**.[Download](https://raw.github.com/xenatt/Hackintosh/master/Tools/RecoveryHD_13A603.dmg), [Read](https://github.com/xenatt/Hackintosh/blob/master/Tools/RecoveryHD%20Creater.command)        
 Support OS X 10.8 and 10.9   
       
 You Must Download OS X installer From Appstore.Save Installer file to /Applications.   
