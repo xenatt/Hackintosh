@@ -1,0 +1,42 @@
+# Maintained by: xenatt for: intel Graphics hd 4600
+# Patch Name   : Intel HD4600
+# Note		   : base on PJALM for: PJALM Graphics 
+# Rename the GFX0 of the iGPU
+into device label GFX0 parent_label _SB.PCI0 set_label begin IGPU end;
+into scope label _SB.PCI0.GFX0 set_label begin _SB.PCI0.IGPU end;
+into method label GNOT parent_label IGPU code_regex (Notify\s\()GFX0(,\s[0-9A-Za-z]{4}\)) replaceall_matched begin %1IGPU%2 end;
+into method label _L06 parent_label _GPE code_regex (\\_SB.PCI0.)GFX0(.GS[A-Z]{2}) replaceall_matched begin %1IGPU%2 end;
+into method label OL1E parent_label _GPE code_regex (\\_SB.PCI0.)GFX0(\.([A-Z])LID) replaceall_matched begin %1IGPU%2 end;
+into method label _STA parent_label H_EC code_regex (Store\s\(0x[0-9A-F]{2},\s\^\^\^)GFX0(.CLID\)) replace_matched begin %1IGPU%2 end;
+into method label _WAK code_regex (\\_SB.PCI0.)GFX0(\.([A-Z])LID) replaceall_matched begin %1IGPU%2 end;
+into method label BRTN code_regex (\\_SB.PCI0.)GFX0(\.DD0\d) replaceall_matched begin %1IGPU%2 end;
+
+# Device injection for the Intel HD40000
+into method label _DSM parent_label IGPU remove_entry;
+into device label IGPU insert begin
+Method (_DSM, 4, NotSerialized)\n
+{\n
+	Store (Package (0x0E) {\n
+		"AAPL,slot-name",\n
+		"Built In",\n
+		"name",\n
+		"Intel Graphics Controller",\n
+		"model",\n
+		 Buffer (0x16) {"Intel HD Graphics 4600"},\n
+		"device_type",\n 
+		 Buffer (0x13) {"Graphics Controller"},\n
+		"device-id",\n
+		 Buffer (0x04) { 0x00, 0x00, 0x16, 0x0a },\n
+		"AAPL,ig-platform-id",\n
+		 Buffer (0x04) { 0x00, 0x00, 0x16, 0x0a },\n
+		"hda-gfx",\n
+		 Buffer (0x0A) {"onboard-1"}\n
+	}, Local0)\n
+	DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))\n
+	Return (Local0)\n
+}
+end;
+
+# Change HDEF layout-id for Intel HD HDMI audio
+into method label _DSM parent_label HDEF code_regex ("layout-id",\s*Buffer\s+\(0x04\)\s*\{\s*)0x[0-9A-F]{2},\s*0x[0-9A-F]{2},\s*0x[0-9A-F]{2},\s*0x[0-9A-F]{2} replace_matched begin %10x03,0x00,0x00,0x00 end;
+
