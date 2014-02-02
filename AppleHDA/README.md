@@ -11,7 +11,7 @@ This Script Auto detect Mac OS X Version and Graphic User Interfce.
 Auto Download Patch and HDAEnable from toleda GitHub : https://github.com/toleda/
 ____________________________________________________________
 
-[Realtek ALC887](/ALC887Patch.command/) 
+AppleHDA Realtek ALC887. [Download](https://raw.github.com/xenatt/Hackintosh/master/AppleHDA/ALC887Patch.command), [Read](https://github.com/xenatt/Hackintosh/blob/master/AppleHDA/ALC887Patch.command)   
 ALC887_v100302 Current - Sandy Bridge/6 Series motherboards and newer
 ALC887_v100202 Legacy - 5 Series motherboards and older
 
