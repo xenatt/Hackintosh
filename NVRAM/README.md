@@ -8,4 +8,4 @@ Clover on Fusion Drive have Bugs With NVRAM Emulator.
 Find My Fix for Clover Not for Fusion Drive.    
 Make Sure your Audio Device Work Before use this.     
 
-if your audio won't work use Fix-Find-My-Mac-No-Say.command. (https://raw.github.com/xenatt/Hackintosh/master/NVRAM/Fix-Find-My-Mac-No-Say.command), [Read](https://github.com/xenatt/Hackintosh/blob/master/NVRAM/Fix-Find-My-Mac-No-Say.command)   
+if your audio won't work use Fix-Find-My-Mac-No-Say.command. [Download](https://raw.github.com/xenatt/Hackintosh/master/NVRAM/Fix-Find-My-Mac-No-Say.command), [Read](https://github.com/xenatt/Hackintosh/blob/master/NVRAM/Fix-Find-My-Mac-No-Say.command)   
