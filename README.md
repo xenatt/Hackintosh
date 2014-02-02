@@ -1,6 +1,12 @@
 ## Hackintosh 
 this Respository make for Hackintosh.
 
-### SSDt-IGPU-HD4600.aml
-SSDT For Inject Intel HD 4600
+[DSDT](/DSDT/)
+DSDT And SSDT Hackintosh
+
+[AppleHDA Realtek ALC Ptach](/AppleHDA/)
+Patch Tools For Patch AppleHDA.kext
+
+[NVRAM](/NVRAM/)
+Patch Tools For NVRAM And iCloud , iMEssage
 
