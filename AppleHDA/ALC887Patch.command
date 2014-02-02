@@ -21,14 +21,15 @@ rm -f ~/Desktop/ALC887/887.zip
 fi
 
 echo "Back Up Original AppleHDA.kext"
-cp -R /System/Library/Extensions/AppleHDA.kext ~/Desktop/ALC887/AppleHDA-orig.kext
+rm -rf ~/Desktop/ALC887/AppleHDA-Original.kext
+cp -R /System/Library/Extensions/AppleHDA.kext ~/Desktop/ALC887/AppleHDA-Original.kext
 echo "Which your Realtek ALC 887 Version?"
-ALC_VER=`osascript -e 'tell application "Finder" to activate' -e 'choose from list {"100302", "100202"} with prompt "Realtek ALC 887 Version" without empty selection allowed'`
-if [ $ALC_VER == "100302" ]
+ALC_VER=`osascript -e 'tell application "Finder" to activate' -e 'choose from list {"Realtek ALC887 v00302", "Realtek ALC887 v100202"} with prompt "Realtek ALC 887 Version" without empty selection allowed'`
+if [ $ALC_VER == "Realtek ALC887 v100302" ]
 then
 echo "Download Realtek ALC 887 Version 100302 files"
 curl -s -o ~/Desktop/ALC887/887.zip https://raw.github.com/toleda/audio_ALC887/master/887.zip
-elif [ $ALC_VER == "100202" ]
+elif [ $ALC_VER == "Realtek ALC887 v100202" ]
 then
 echo "Download Realtek ALC 887 Version 100302 files"
 curl -s -o ~/Desktop/ALC887/887.zip https://raw.github.com/toleda/audio_ALC887/master/887_v100202.zip
@@ -96,10 +97,12 @@ fi
 echo "Fix permissions ..."
 sudo chown -R root:wheel /System/Library/Extensions/AppleHDA.kext
 
-HDAE_VER=`osascript -e 'tell application "Finder" to activate' -e 'choose from list {"DSDT Inject","HDAEnable 1", "HDAEnable 2", "HDAEnable 12"} with prompt "HDAEnable Version" without empty selection allowed'`
-if [ "$HDAE_VER" == "DSDT Inject" ]
+HDAE_VER=`osascript -e 'tell application "Finder" to activate' -e 'choose from list {"DSDT SSDT Inject","HDAEnable 1", "HDAEnable 2", "HDAEnable 12"} with prompt "HDAEnable Version" without empty selection allowed'`
+if [ "$HDAE_VER" == "DSDT SSDT Inject" ]
 then
 echo "DSDT Inject"
+echo "DSDT injection https://github.com/toleda/audio_ALCInjection"
+echo "SSDT injection https://github.com/toleda/audio_ssdt_enabler "
 elif [ "$HDAE_VER" == "HDAEnable 1" ]
 then
 echo "Download HDAEnable 1"
@@ -132,6 +135,7 @@ echo "Clear Kernel Cache..."
 sudo rm -fr /System/Library/Caches/*
 sudo touch /System/Library/Extensions
 echo "Clean Temporary file.."
-rm -R ~/Desktop/ALC887/887
+rm -rf ~/Desktop/ALC887/887
+rm -rf ~/Desktop/ALC887/AppleHDA.kext
 cp -R /System/Library/Extensions/AppleHDA.kext ~/Desktop/ALC887/AppleHDA.kext
 echo "Finished, restart required."
