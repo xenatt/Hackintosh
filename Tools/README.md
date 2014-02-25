@@ -4,6 +4,9 @@ Other tools For Hackintosh.
 **Mac Address Spoofer**.[Download](https://raw.github.com/xenatt/Hackintosh/master/Tools/MacAddressSpoofer.applescript)          
 Mac  Address Generator And Change Mac Adress for Mac OS X.     
 
+**Mac OS X LaunchPad & context menu icon refresher **.[Download](https://raw.github.com/xenatt/Hackintosh/master/Tools/refreshicons.applescript)            
+This script for refresh icon in launchpad and context menu.       
+
 
 **Spotligth Re-index**.[Download](https://raw.github.com/xenatt/Hackintosh/master/Tools/reindex-spotligth.command)   
 mini command script for re-index spotligth datatbase
