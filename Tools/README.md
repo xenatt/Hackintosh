@@ -1,7 +1,7 @@
 ## Tools
 Other tools For Hackintosh.        
 
-**ThaiPBS Live HD For Mac**.[Download](https://raw.github.com/xenatt/Hackintosh/master/Tools/ThaiPBSPlayer.dmg),[Read](https://github.com/xenatt/Hackintosh/master/Tools/ThaiPBS.applescript)              
+**ThaiPBS Live HD For Mac**.[Download](https://raw.github.com/xenatt/Hackintosh/master/Tools/ThaiPBSPlayer.dmg),[Read](https://raw.github.com/xenatt/Hackintosh/master/Tools/ThaiPBS.applescript)              
 ThaiPBS Live HD For Mac is minimal AppleScript Chooice Resolution for Play live Streaming.     
 ThaiPBS Live HD for Mac Require [VLC Player](http://www.videolan.org/vlc/).     
 ![ThaiPBS Live HD ScreeShot](https://raw.github.com/xenatt/Hackintosh/master/Tools/thaipbs.png)     
