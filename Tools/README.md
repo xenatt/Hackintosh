@@ -6,7 +6,12 @@ ThaiPBS Live HD For Mac is minimal AppleScript Chooice Resolution for Play live 
 ThaiPBS Live HD for Mac Require [VLC Player](http://www.videolan.org/vlc/).     
 ![ThaiPBS Live HD ScreeShot](https://raw.github.com/xenatt/Hackintosh/master/Tools/thaipbs.png)     
 
-     
+**BlueSky Channel For Mac**.[Download](https://raw.github.com/xenatt/Hackintosh/master/Tools/BlueskyChannel.dmg),[Read](https://raw.github.com/xenatt/Hackintosh/master/Tools/BlueskyChannel.applescript)              
+BlueskyChannel For Mac is minimal AppleScript Chooice Resolution for Play live Streaming.     
+BlueskyChannel for Mac Require [VLC Player](http://www.videolan.org/vlc/).     
+![ThaiPBS Live HD ScreeShot](https://raw.github.com/xenatt/Hackintosh/master/Tools/BlueskyChannel.png)     
+ 
+
 
 **Mac Address Spoofer**.[Download](https://raw.github.com/xenatt/Hackintosh/master/Tools/MacAddressGeneratorAndSpoof.dmg),[Read](https://raw.github.com/xenatt/Hackintosh/master/Tools/MacAddressSpoofer.applescript)       
 Mac  Address Generator And Change Mac Adress for Mac OS X.  
