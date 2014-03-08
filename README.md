@@ -1,7 +1,5 @@
 ![Hackintosh Thailand](https://raw.github.com/xenatt/Hackintosh/master/Tools/Hackintosh_Thailand.png)     
-[Hackintosh Thailand Community](https://plus.google.com/communities/113712720833288781260)    
-
-## Hackintosh 
+[##Hackintosh Thailand Community](https://plus.google.com/communities/113712720833288781260)    
 this Respository make for Hackintosh.
 
 [DSDT](/DSDT/)   
