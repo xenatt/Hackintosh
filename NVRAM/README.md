@@ -3,7 +3,12 @@ Tools And Document for Fix NVRAM (iCloud,iMessage,Find My Mac)
      
 **iMessage Fix**.[Download](https://raw.github.com/xenatt/Hackintosh/master/NVRAM/iMessageFix.dmg),[Read](https://raw.github.com/xenatt/Hackintosh/master/NVRAM/iMessageFix.applescript)       
 Fix iCloud, iMessage,  App Store login prblem.  
-Best for Chameleon and Chimera.  After run this app remove all network interface from System preferences.              
+Best for Chameleon and Chimera.  After run this app remove all network interface from System preferences.
+edit /Extra/org.chameleon.boot.plist add section    
+
+<key>EthernetBuiltIn</key>   
+<string>Yes</string>    
+login iCloud first , App store , iMessage.                 
      
 ![iMessage Fix](https://raw.github.com/xenatt/Hackintosh/master/NVRAM/iMessageFix.png)      
 ![iMessage Fix Network](https://raw.github.com/xenatt/Hackintosh/master/NVRAM/iMessageFixNetwork.png)     
