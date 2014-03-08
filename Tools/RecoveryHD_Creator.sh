@@ -1,42 +1,107 @@
+#!/bin/bash
+#Recovery Hd Script Modified from http://rampagedev.wordpress.com/os-x-tweaks/how-to-create-a-recovery-partition-and-enable-all-features-of-icloud-and-imessages/ 
+#Copy Rigth GPL
+#by Nattapong Pullkhow
+
 MNTPATH="/Volumes/Macosx_installer"
 MAVPATH="/Applications/Install OS X Mavericks.app/Contents/SharedSupport/InstallESD.dmg"
 MTLPATH="/Applications/Install OS X Mountain Lion.app/Contents/SharedSupport/InstallESD.dmg"
 ML=false
 MAV=false
 DMSHA="1b4fa6daa72d18c7b37a1d0071128d192e606898"
+OSXV=`sw_vers -productVersion`
+DMGPATH=""
 
+DLX=`osascript -e 'set y to display dialog "Do you want to Create Recovery HD Partition?" with title "Recovery HD Creator" buttons {"Close", "Create"} default button "Create"' -e 'set x to button returned of y' -e 'x'`
+if [ "$DLX" == "Create" ]
+	then
+		clear 
+		echo "Starting Recovery HD Creator." 
+		echo "========================================================" 
+		echo ""
+elif [ "$DLX" == "Close" ]
+	then
+	exit
+fi
 echo "Searching For OS X Mountain Lion and OS X Mavericks Installer in Applications's Folder"
-if [ -f "$MAVPATH" ] 
+if [ -f "$MTLPATH" ] 
 	then	
+		MD5=""
+		SHA1=""
+		echo ""
 		echo "OS X Mountain Lion Installer Found." 
+		echo "Check SUM Please wait...."
+		MD5=`openssl md5 "$MTLPATH" | awk '{print $6}'`
+		echo "MD5 : $MD5"
+		SHA1=`openssl sha1 "$MTLPATH" | awk '{print $6}'`
+		echo "SHA1 : $SHA1"
 		ML=true
 fi
 
-OSXV=`sw_vers -productVersion`
 if [ -f "$MAVPATH" ] 
-		then	
-			echo "OS X Maverick Installer Found." 
-			MAV=true
+	then	
+		MD5=""
+		SHA1=""
+		echo ""
+		echo "OS X Maverick Installer Found." 
+		echo "Check SUM Please wait...."
+		MD5=`openssl md5 "$MAVPATH" | awk '{print $5}'`
+		echo "MD5 : $MD5"
+		SHA1=`openssl sha1 "$MAVPATH" | awk '{print $5}'`
+		echo "SHA1 : $SHA1"
+		MAV=true
 fi
+echo ""
+echo "Checking Exist Recovery HD "
 D=`mount | grep " / " | awk '{print $1}' | sed 's/\/dev\///' | sed 's/s[0-9]//'`;Y=`diskutil list | grep 'Recovery HD' | grep $D | awk '{print $7}' | sed 's/s[0-9]//'`
 if [ "$D" == "$Y" ] 
 	then
-	echo "Recovery HD is Exists"
+	echo "Recovery HD Partition is Exists"
 fi
 if [[ $ML && $MAV ]]
 	then
 	OSXVER=`osascript -e 'set x to {"OS X Maverick", "OS X Mountain Lion"}' -e 'set l0 to (choose from list x with prompt "Create Recovery HD for" without empty selection allowed)' -e 'if l0 is not equal to false then' -e	'set y to item 1 of l0'  -e 'y' -e 'end if'`
-	if [ "OSXVER" == "" ]
+	if [ "$OSXVER" == "" ]
 		then
 		exit
+	elif [ "$OSXVER" == "OS X Mountain Lion" ]
+		then
+		DMGPATH="$MTLPATH" 
+	elif [ "$OSXVER" == "OS X Maverick" ]
+		then
+		DMGPATH="$MAVPATH" 
 	fi
 elif [[ $ML && !$MAV ]]
 	then
 	OSXVER="OS X Mountain Lion"
+	DMGPATH="$MTLPATH" 
 elif [[ !$ML && $MAV ]]
 	then
+	DMGPATH="$MAVPATH"
 	OSXVER="OS X Maverick"
+elif [[ !$ML && !$MAV ]]
+	then
+	if [ $(echo $OSXV | grep -c "10.8") == 1 ]
+		then
+		echo "OS X Mountain Lion Installer Not Found."
+		echo "Download Mac OS X Mountain Lion At https://itunes.apple.com/app/os-x-mountain-lion/id537386512"
+		osascript 'tell application "System Events"' -e 'open location "macappstores://itunes.apple.com/app/os-x-mountain-lion/id537386512"' -e 'end tell'
+		exit
+	elif [ $(echo $OSXV | grep -c "10.9") == 1 ]
+		then
+		echo "OS X Mavericks Installer Not Found."
+		echo "Download Mac OS X Mavericks At https://itunes.apple.com/app/os-x-mavericks/id675248567"
+		osascript 'tell application "System Events"' -e 'open location "macappstores://itunes.apple.com/app/os-x-mavericks/id675248567"' -e 'end tell'
+		exit
+	else
+		echo "Recovery Creator Support OS X Mavericks And OS X Mountain Lion Only."
+		echo "Download Mac OS X Mountain Lion At https://itunes.apple.com/app/os-x-mountain-lion/id537386512"
+		echo "Download Mac OS X Mavericks At https://itunes.apple.com/app/os-x-mavericks/id675248567"
+		exit
+	fi
 fi
+
+echo $DMGPATH
 echo "VESION: ${OSXVER}"
 cat > /tmp/dmtest.base64 << EOF
 yv66vgAAAAIBAAAHgAAAAwAAEAAAAGCwAAAADAAAAAcAAAADAACAAAAAbkAAAAAM
@@ -1311,10 +1376,44 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
 EOF
-
+echo ""
+echo "Extract dmtest tool.."
+echo "Check Sum in progress..."
 openssl base64 -d -in /tmp/dmtest.base64 -out /tmp/dmtest;chmod 755 /tmp/dmtest;
 M=`openssl sha1 /tmp/dmtest | awk '{print $2}'`
+echo "SHA1 : $M"
 if [ "$DMSHA" == "$M" ]
 	then
 	echo "dmtest is verified"
+else
+	echo "Error,dmtest is not verified"
+	exit
 fi
+if [ -f "$DMGPATH" ] 
+	then 
+		echo "Mount $OSXVER installer image file."
+		hdiutil attach "$DMGPATH" -mountpoint "$MNTPATH" -noverify -nobrowse ;
+	else 
+		echo "Error, $OSXVER Installer Path."
+		exit
+fi
+
+#get destination drive
+DEST=`osascript -e 'do shell script "ls /Volumes/"' -e 'set _Result to the paragraphs of result' -e 'set theVolumeTemp to (choose from list _Result with prompt "DESTINATION disk for Recovery HD partition: " without empty selection allowed)' -e 'if theVolumeTemp is false then return' -e 'set theVolume to "/Volumes/" & theVolumeTemp & "/"'`
+#Apple Script Form http://macscripter.net/viewtopic.php?id=25755
+if [ ! -d "$DEST" ]
+	then 
+		echo 'This Volumes not found'
+		X=`osascript -e 'set theDialg to (display dialog "This Volumes not found." buttons {"OK"})'`
+		exit
+fi
+
+echo "Creating Recovery Hd Partitionin progress."
+echo "Enter Password in Terminal and Please Wait..."
+echo /tmp/dmtest ensureRecoveryPartition "$DEST" "$MNTPATH"/BaseSystem.dmg 0 0 "$MNTPATH"/BaseSystem.chunklist
+
+echo "Process Complete..."
+echo "Checking Recovery HD..."
+echo 'Unmount Exists image file from system';
+sudo diskutil eject $MNTPATH
+echo 'Good Bye'
