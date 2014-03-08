@@ -6,8 +6,8 @@ Fix iCloud, iMessage,  App Store login prblem.
 Best for Chameleon and Chimera.  After run this app remove all network interface from System preferences.
 edit /Extra/org.chameleon.boot.plist add section    
 
-<key>EthernetBuiltIn</key>   
-<string>Yes</string>    
+&lt;key&gt;EthernetBuiltIn&lt;/key&gt;  
+&lt;string&gt;Yes&lt;/string&gt;   
 login iCloud first , App store , iMessage.                 
      
 ![iMessage Fix](https://raw.github.com/xenatt/Hackintosh/master/NVRAM/iMessageFix.png)      
