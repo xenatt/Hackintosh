@@ -1410,7 +1410,7 @@ fi
 
 echo "Creating Recovery Hd Partitionin progress."
 echo "Enter Password in Terminal and Please Wait..."
-echo /tmp/dmtest ensureRecoveryPartition "$DEST" "$MNTPATH"/BaseSystem.dmg 0 0 "$MNTPATH"/BaseSystem.chunklist
+sudo /tmp/dmtest ensureRecoveryPartition "$DEST" "$MNTPATH"/BaseSystem.dmg 0 0 "$MNTPATH"/BaseSystem.chunklist
 
 echo "Process Complete..."
 echo "Checking Recovery HD..."
