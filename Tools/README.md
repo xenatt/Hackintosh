@@ -24,7 +24,7 @@ This script for refresh icon in launchpad and context menu.
 **Spotligth Re-index**.[Download](https://raw.github.com/xenatt/Hackintosh/master/Tools/reindex-spotligth.command)   
 mini command script for re-index spotligth datatbase
 
-**Recovery HD Partition Creator**.[Download](https://raw.github.com/xenatt/Hackintosh/master/Tools/RecoveryHD_Creator.png.dmg), [Read](https://github.com/xenatt/Hackintosh/blob/master/Tools/RecoveryHD_Creator.png.command)        
+**Recovery HD Partition Creator**.[Download](https://raw.github.com/xenatt/Hackintosh/master/Tools/RecoveryHD_Creator.dmg), [Read](https://github.com/xenatt/Hackintosh/blob/master/Tools/RecoveryHD_Creator.command)        
 Support OS X 10.8 and 10.9   
 This Script Search Mac OS X Installer in /Applications.  
 if found OS X Mavericks and OS X Mountain Lion It make you choice.   
