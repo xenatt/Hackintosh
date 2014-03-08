@@ -28,7 +28,7 @@ mini command script for re-index spotligth datatbase
 Support OS X 10.8 and 10.9   
 This Script Search Mac OS X Installer in /Applications.  
 if found OS X Mavericks and OS X Mountain Lion It make you choice.   
-![Recovery HD Partition Creator ScreeShot](https://raw.github.com/xenatt/Hackintosh/master/Tools/RecoveryHD_Creator.png.png)  
+![Recovery HD Partition Creator ScreeShot](https://raw.github.com/xenatt/Hackintosh/master/Tools/RecoveryHD_Creator.png)  
       
 	  
 	  
