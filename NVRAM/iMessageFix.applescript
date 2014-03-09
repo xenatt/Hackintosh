@@ -26,7 +26,7 @@ set x to display dialog "Do you want to fix iMessage iCloud on this Mac,
 This process cannot revert?" with title "iMessage Fix" buttons {"Fix it", "Close"} default button "Close"
 if button returned of x is equal to "Fix it" then
 	try
-		do shell script "sudo rm -rf /Extra/nvram*.plist;sudo rm -rf /Library/Preferences/SystemConfiguration/NetworkInterfaces.plist;rm -rf ~/Library/Caches/com.apple.Messages;rm -rf ~/com.apple.imfoundation.IMRemoteURLConnectionAgent;rm -rf ~/Library/Preferences/com.apple.iChat;rm -rf ~/Library/Preferences/com.apple.imdsmsrecordstore;rm -rf ~/Library/Preferences/com.apple.imdsmsrecordstore;rm -rf ~/Library/Preferences/com.apple.imessage;rm -rf ~/Library/Preferences/com.apple.imservice;rm -rf /Library/Messages/" with administrator privileges
+		do shell script "rm -rf ~/Library/Accounts/*;rm -rf \"~/Library/Application Support/App Store/updatejournal.plist\";rm -rf \"~/Library/Application Support/iCloud/Accounts/*\";rm -rf \"~/Library/Application Support/com.apple.TCC/TCC.db\";sudo rm -rf /Extra/nvram*.plist;sudo rm -rf /Library/Preferences/SystemConfiguration/NetworkInterfaces.plist;rm -rf ~/Library/Caches/com.apple.Messages;rm -rf ~/com.apple.imfoundation.IMRemoteURLConnectionAgent;rm -rf ~/Library/Preferences/com.apple.iChat;rm -rf ~/Library/Preferences/com.apple.imdsmsrecordstore;rm -rf ~/Library/Preferences/com.apple.imdsmsrecordstore;rm -rf ~/Library/Preferences/com.apple.imessage;rm -rf ~/Library/Preferences/com.apple.imservice;rm -rf /Library/Messages/" with administrator privileges
 	end try
 	tell application "System Events"
 		tell application "System Preferences"
