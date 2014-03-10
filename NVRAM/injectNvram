@@ -1,0 +1,15 @@
+#!/bin/bash
+
+I=`system_profiler | grep "Serial Number (system)" | awk '{print $4}'`;Z=`perl -e 'printf "%05X", rand 0xFFFFF'`;
+Y=`echo $I$Z`;
+X=`nvram efi-boot-device | sed 's/UUID/ /' | awk '{print $3}' | sed 's/<[^>]*>//g'`;
+MAC=`ifconfig | grep ether | awk '{print $2}' | sed 's/://g'`;
+if [ "$X" == "" ]
+then
+X=`uuidgen`
+fi
+if [[ "$X" != "" && "$Y" != "" ]] 
+then
+nvram "$X:MLB=$Y"
+nvram "$X:ROM=$MAC"
+fi
