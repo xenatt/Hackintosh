@@ -53,7 +53,7 @@ if [ -f "$MAVPATH" ]
 		echo "SHA1 : $SHA1"
 		MAV=true
 	else
-		echo "OS X Mountain Lion Installer Not Found." 	
+		echo "OS X Mavericks Installer Not Found." 	
 fi
 echo ""
 echo "Checking Exist Recovery HD "
@@ -62,6 +62,18 @@ if [ "$D" == "$Y" ]
 	then
 	echo "Recovery HD Partition is Exists"
 fi
+
+if [ "$(echo $OSXV | grep -c 10.9)" == 1 ]
+	then
+	echo System is Mac OS X Mavericks 
+elif [ "$(echo $OSXV | grep -c 10.8)" == 1 ]
+	then
+	echo System is Mac OS X Mountain Lion
+elif [ "$(echo $OSXV | grep -c 10.7)" == 1 ]
+	then
+	echo System is Mac OS X Lion
+fi
+
 if [[ $ML == true && $MAV == true ]]
 	then
 	OSXVER=`osascript -e 'set x to {"OS X Maverick", "OS X Mountain Lion"}' -e 'set l0 to (choose from list x with prompt "Create Recovery HD for" without empty selection allowed)' -e 'if l0 is not equal to false then' -e	'set y to item 1 of l0'  -e 'y' -e 'end if'`
@@ -87,13 +99,11 @@ elif [[ $ML == false && $MAV == false ]]
 	then
 	if [ $(echo $OSXV | grep -c "10.8") == 1 ]
 		then
-		echo "OS X Mountain Lion Installer Not Found."
 		echo "Download Mac OS X Mountain Lion At https://itunes.apple.com/app/os-x-mountain-lion/id537386512"
 		osascript -e 'tell application "System Events"' -e 'open location "macappstores://itunes.apple.com/app/os-x-mountain-lion/id537386512"' -e 'end tell'
 		exit
 	elif [ $(echo $OSXV | grep -c "10.9") == 1 ]
 		then
-		echo "OS X Mavericks Installer Not Found."
 		echo "Download Mac OS X Mavericks At https://itunes.apple.com/app/os-x-mavericks/id675248567"
 		osascript -e 'tell application "System Events"' -e 'open location "macappstores://itunes.apple.com/app/os-x-mavericks/id675248567"' -e 'end tell'
 		exit
