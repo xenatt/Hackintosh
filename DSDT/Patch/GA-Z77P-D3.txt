@@ -627,11 +627,11 @@ Method (_DSM, 4, NotSerialized)\n
                             "Realtek ALC887 Audio Controller"\n
                         },\n 
 
-                        "device_type", 
-                        Buffer (0x11)
-                        {
-                            "Audio Controller"
-                        }, 
+                        "device_type",\n  
+                        Buffer (0x11)\n 
+                        {\n 
+                            "Audio Controller"\n 
+                        },\n 
 
                         "layout-id",\n 
                         Buffer (0x04)\n
