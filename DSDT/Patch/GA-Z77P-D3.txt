@@ -609,7 +609,11 @@ Method (EHCD, 0, NotSerialized)\n
 	Store (Zero, PDHC)\n
 }\n
 \n
- Method (_DSM, 4, NotSerialized)\n
+end;
+into method label _DSM parent_label HDEF remove_entry;
+into device label HDEF insert
+begin
+Method (_DSM, 4, NotSerialized)\n
             {\n
                 Store (Package (0x0E)\n
                     {\n
