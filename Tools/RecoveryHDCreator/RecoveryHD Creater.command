@@ -32,10 +32,10 @@ if [ -f "$DMGPATH" ]
 		say "Mount OS X installer image file"
 		hdiutil attach "$DMGPATH" -mountpoint "$MNTPATH" -noverify -nobrowse ;
 	else 
-		if [ "$(osascript -e 'set theDialg to (display dialog "OS X Mavericks installer App Not Found." & " Download OS X Mavericks from App Store First" buttons {"Download", "Quite"})' | grep 'Download')" ] 
+		if [ "$(osascript -e 'set t to display dialog "OS X installer App Not Found. Download OS X Mavericks from App Store First" buttons {"Download", "Quite"}' | grep -c'Download')"  == 1 ] 
 			then
 				echo "Download Mac OS X Mavericks At https://itunes.apple.com/us/app/os-x-mavericks/id675248567?mt=12"
-				osascript 'tell application "System Events"' -e 'open location "macappstores://itunes.apple.com/us/app/os-x-mavericks/id675248567?mt=12"' -e 'end tell'
+				osascript -e 'tell application "System Events"' -e 'open location "macappstores://itunes.apple.com/us/app/os-x-mavericks/id675248567?mt=12"' -e 'end tell'
 				say "Open Mac App store. You Must Download OS X Mavericks Or OS X Mountain Lion First"
 			else
 				echo 'Good Bye'

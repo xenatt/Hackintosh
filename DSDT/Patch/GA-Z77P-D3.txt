@@ -609,23 +609,45 @@ Method (EHCD, 0, NotSerialized)\n
 	Store (Zero, PDHC)\n
 }\n
 \n
+end;
+into method label _DSM parent_label HDEF remove_entry;
+into device label HDEF insert
+begin
 Method (_DSM, 4, NotSerialized)\n
-{\n
-	Store (Package (0x15)\n
-		{\n
-			"AAPL,slot-name", "Built In",\n
-			"name", "Intel xHCI Controller",\n
-			"model", "Intel 7 Series Chipset Family USB xHCI Host Controller",\n
-			"device_type", "USB Controller",\n
-			"AAPL,current-available", 0x0834,\n
-			"AAPL,current-extra", 0x0A8C,\n
-			"AAPL,current-in-sleep", 0x03E8,\n
-			"AAPL,current-extra-in-sleep", 0x0834,\n
-			"AAPL,max-port-current-in-sleep", 0x0A8C,\n
-			"AAPL,device-internal", 0x02,\n
-			Buffer (One) {0x00}\n
-		}, Local0)\n
-	DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))\n
+            {\n
+                Store (Package (0x0E)\n
+                    {\n
+                        "AAPL,slot-name",\n
+                        "Built In",\n 
+                        "name",\n 
+                        "Realtek Audio Controller",\n 
+                        "model",\n 
+                        Buffer (0x20)\n
+                        {\n
+                            "Realtek ALC887 Audio Controller"\n
+                        },\n 
+
+                        "device_type",\n  
+                        Buffer (0x11)\n 
+                        {\n 
+                            "Audio Controller"\n 
+                        },\n 
+
+                        "layout-id",\n 
+                        Buffer (0x04)\n
+                        {\n
+                            0x03, 0x00, 0x00, 0x00\n
+                        },\n
+
+                        "PinConfigurations",\n 
+                        Buffer (Zero) {},\n 
+                        "hda-gfx",\n
+                        Buffer (0x0A)\n
+                        {\n
+                            "onboard-1"\n
+                        }\n
+                    }, Local0)\n
+        DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))\n
 	Return (Local0)\n
 }
 end;
