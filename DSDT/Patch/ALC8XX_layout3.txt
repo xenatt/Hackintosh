@@ -39,5 +39,5 @@ Method (_DSM, 4, NotSerialized)\n
                     }, Local0)\n
         DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))\n
 	Return (Local0)\n
-}
+}\n
 end;
